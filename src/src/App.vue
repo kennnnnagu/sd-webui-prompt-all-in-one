@@ -289,6 +289,98 @@ export default {
                     hideGroupTags: false,
                     id: 'phystonPrompt_img2img_neg_prompt'
                 },
+                {
+                    tab: 'tab_vs_battle_generator',
+                    prompt: 'vs_battle_char1_prompt',
+                    counter: '',
+                    button: '',
+                    steps: 'vs_battle_steps',
+                    historyKey: 'vs_battle_char1',
+                    favoriteKey: 'vs_battle_char1',
+                    $prompt: null,
+                    $textarea: null,
+                    $steps: null,
+                    name: 'vs_battle_char1_prompt',
+                    neg: false,
+                    hideDefaultInputKey: 'vsBattleChar1HideDefaultInput',
+                    hideDefaultInput: false,
+                    autoLoadWebuiPromptKey: 'vsBattleChar1AutoLoadWebuiPrompt',
+                    autoLoadWebuiPrompt: true,
+                    hidePanelKey: 'vsBattleChar1HidePanel',
+                    hidePanel: false,
+                    hideGroupTagsKey: 'vsBattleChar1HideGroupTags',
+                    hideGroupTags: false,
+                    id: 'phystonPrompt_vs_battle_char1_prompt'
+                },
+                {
+                    tab: 'tab_vs_battle_generator',
+                    prompt: 'vs_battle_char2_prompt',
+                    counter: '',
+                    button: '',
+                    steps: 'vs_battle_steps',
+                    historyKey: 'vs_battle_char2',
+                    favoriteKey: 'vs_battle_char2',
+                    $prompt: null,
+                    $textarea: null,
+                    $steps: null,
+                    name: 'vs_battle_char2_prompt',
+                    neg: false,
+                    hideDefaultInputKey: 'vsBattleChar2HideDefaultInput',
+                    hideDefaultInput: false,
+                    autoLoadWebuiPromptKey: 'vsBattleChar2AutoLoadWebuiPrompt',
+                    autoLoadWebuiPrompt: true,
+                    hidePanelKey: 'vsBattleChar2HidePanel',
+                    hidePanel: false,
+                    hideGroupTagsKey: 'vsBattleChar2HideGroupTags',
+                    hideGroupTags: false,
+                    id: 'phystonPrompt_vs_battle_char2_prompt'
+                },
+                {
+                    tab: 'tab_vs_battle_generator',
+                    prompt: 'vs_battle_vs_prompt',
+                    counter: '',
+                    button: '',
+                    steps: 'vs_battle_steps',
+                    historyKey: 'vs_battle_vs',
+                    favoriteKey: 'vs_battle_vs',
+                    $prompt: null,
+                    $textarea: null,
+                    $steps: null,
+                    name: 'vs_battle_vs_prompt',
+                    neg: false,
+                    hideDefaultInputKey: 'vsBattleVsHideDefaultInput',
+                    hideDefaultInput: false,
+                    autoLoadWebuiPromptKey: 'vsBattleVsAutoLoadWebuiPrompt',
+                    autoLoadWebuiPrompt: true,
+                    hidePanelKey: 'vsBattleVsHidePanel',
+                    hidePanel: false,
+                    hideGroupTagsKey: 'vsBattleVsHideGroupTags',
+                    hideGroupTags: false,
+                    id: 'phystonPrompt_vs_battle_vs_prompt'
+                },
+                {
+                    tab: 'tab_vs_battle_generator',
+                    prompt: 'vs_battle_neg_prompt',
+                    counter: '',
+                    button: '',
+                    steps: 'vs_battle_steps',
+                    historyKey: 'vs_battle_neg',
+                    favoriteKey: 'vs_battle_neg',
+                    $prompt: null,
+                    $textarea: null,
+                    $steps: null,
+                    name: 'vs_battle_neg_prompt',
+                    neg: true,
+                    hideDefaultInputKey: 'vsBattleNegHideDefaultInput',
+                    hideDefaultInput: false,
+                    autoLoadWebuiPromptKey: 'vsBattleNegAutoLoadWebuiPrompt',
+                    autoLoadWebuiPrompt: true,
+                    hidePanelKey: 'vsBattleNegHidePanel',
+                    hidePanel: false,
+                    hideGroupTagsKey: 'vsBattleNegHideGroupTags',
+                    hideGroupTags: false,
+                    id: 'phystonPrompt_vs_battle_neg_prompt'
+                },
             ],
             languageCode: '',
             languages: {},
@@ -855,11 +947,14 @@ export default {
                         item.hideGroupTags = data[item.hideGroupTagsKey]
                     }
                     item.$prompt = common.gradioApp().querySelector("#" + item.prompt)
-                    item.$textarea = item.$prompt.getElementsByTagName("textarea")[0]
-                    item.$steps = common.gradioApp().querySelector("#" + item.steps)
+                    if (item.$prompt) {
+                        item.$textarea = item.$prompt.getElementsByTagName("textarea")[0]
+                        item.$steps = common.gradioApp().querySelector("#" + item.steps)
+                    }
                 })
                 this.$nextTick(() => {
                     this.prompts.forEach(item => {
+                        if (!item.$prompt) return
                         const $prompt = common.gradioApp().querySelector("#" + item.id)
                         console.log($prompt);
                         item.$prompt.parentElement.parentElement.after($prompt)
